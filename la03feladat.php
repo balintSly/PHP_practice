@@ -62,7 +62,6 @@ if (!file_exists("szobak.txt") and !file_exists("foglalasok.txt"))
 
 
 }
-$foglalas=new Foglalas("","","2000-01-01",0,0,0,new Szoba(0,0));
 ?>
 <html>
 <head>
@@ -75,6 +74,9 @@ $foglalas=new Foglalas("","","2000-01-01",0,0,0,new Szoba(0,0));
             alert("Sikertelen foglalás!");
         }
     </script>
+    <style>
+
+    </style>
 </head>
 <body>
 <h1>Szállásfoglalás</h1>
@@ -104,10 +106,6 @@ if (!empty($_POST["neve"]) and !empty($_POST["lakcim"]))
     fclose($fajl);
 
     $foglalas=new Foglalas( $_POST["neve"],  $_POST["lakcim"],   $_POST["kezdet"],   $_POST["fo"],  $_POST["gyerek"],  $_POST["ejszaka"], new Szoba(0, 0));
-
-    /*echo "Ezt a foglalást akarod menteni:";
-    var_dump($foglalas)."<br>";*/
-
 
     function belefernek(Szoba $szoba)
     {
@@ -163,11 +161,6 @@ if (!empty($_POST["neve"]) and !empty($_POST["lakcim"]))
             fwrite($fajl, serialize($foglalasok));
             fclose($fajl);
         }
-       /* echo "<br><br>Sikeres foglalás!<br><br>";
-        foreach ($foglalasok as $foglalitem)
-        {
-            echo "Kezdet: ".$foglalitem->kezdet." Vég: ".$foglalitem->veg." Szoba:".$foglalitem->szoba->szobaszam." Fő: .$foglalitem->fo."."<br>";
-        }*/
         ?>
         <script>
             sikeresfoglalas("<?php echo $foglalas;?>");
@@ -176,7 +169,6 @@ if (!empty($_POST["neve"]) and !empty($_POST["lakcim"]))
     }
     else//nincs foglalhato
     {
-        /*echo "<br>"."Nincs foglalható szoba!";*/
         ?>
             <script>
                 sikertelenfoglalas();
